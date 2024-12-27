@@ -112,6 +112,50 @@ The module integrates seamlessly with Flask. The following routes are available:
 5. **Access the Application**:
    Open a web browser and navigate to `http://localhost:5000`.
 
+## Database Initialization Commands
+Use the following commands to set up the PostgreSQL database on a Linux system:
+
+1. **Switch to PostgreSQL User**:
+   ```bash
+   sudo -i -u postgres
+   ```
+
+2. **Access PostgreSQL Command Line Interface**:
+   ```bash
+   psql
+   ```
+
+3. **Create a New Database**:
+   ```sql
+   CREATE DATABASE signup_login_psql;
+   ```
+
+4. **Create a New User**:
+   ```sql
+   CREATE USER turtle_psql WITH PASSWORD 'turtle6969';
+   ```
+
+5. **Grant Privileges to the User**:
+   ```sql
+   GRANT ALL PRIVILEGES ON DATABASE signup_login_psql TO turtle_psql;
+   ```
+
+6. **Exit PostgreSQL**:
+   ```bash
+   \q
+   exit
+   ```
+
+7. **Test Database Connection**:
+   Use the `psql` command or your application to verify the connection using the environment variables:
+   ```plaintext
+   DB_USERNAME=turtle_psql
+   DB_PASSWORD=turtle6969
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_NAME=signup_login_psql
+   ```
+
 ## File Structure
 ```plaintext
 project/
@@ -133,5 +177,3 @@ project/
 - Add token-based authentication (e.g., JWT) for stateless sessions.
 - Implement rate limiting to prevent brute force attacks.
 - Provide detailed logging for debugging and monitoring.
-
-
