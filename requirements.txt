@@ -3,3 +3,4 @@ Flask-Cors
 Flask-Bcrypt
 python-dotenv
 psycopg2-binary
+cryptography
