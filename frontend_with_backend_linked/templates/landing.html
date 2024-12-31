@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthcare</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white h-full">
+    <nav class="bg-gray-800 text-white top-0 sticky z-50">
+        <div class="container mx-auto flex items-center justify-between py-4 px-6">
+          <!-- Logo -->
+          <a href="{{ url_for('landing') }}" class="text-2xl font-bold">Healthcare</a>
+      
+          <!-- Navigation Links -->
+          <ul class="flex items-center space-x-8">
+            <li><a href="{{ url_for('landing') }}" class="bg-orange-500 text-white px-4 py-2 rounded-full font-semibold">Home</a></li>
+            <li><a href="#" class="hover:text-orange-500 transition">Counselling</a></li>
+            <li><a href="#" class="hover:text-orange-500 transition">Image Analysis</a></li>
+            <li><a href="{{ url_for('blogs') }}" class="hover:text-orange-500 transition">Blogs</a></li>
+            <li><a href="#contact" class="hover:text-orange-500 transition">Contact</a></li>
+            {% if 'username' in session %}
+              <li><a href="{{ url_for('dashboard') }}" class="hover:text-orange-500 transition">Dashboard</a></li>
+            {% else %}
+              <li><a href="{{ url_for('auth_page') }}" class="hover:text-orange-500 transition">Login</a></li>
+            {% endif %}
+            <!-- Dropdown Menu -->
+            <li class="relative group">
+              <a href="#" class="hover:text-orange-500 transition flex items-center">
+                Dropdown <span class="ml-1">▼</span>
+              </a>
+              <ul class="absolute hidden group-hover:block bg-gray-700 text-sm mt-2 space-y-1 py-2 w-32 rounded-lg">
+                <li><a href="#" class="block px-4 py-2 hover:bg-gray-600">Option 1</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-gray-600">Option 2</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-gray-600">Option 3</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+    </nav>
+  <header class="bg-gradient-to-b from-gray-800 to-gray-700">
+    <div class="bg-gradient-to-b from-gray-800 to-gray-900 text-white h-screen flex flex-col items-center justify-center">
+      <h1 class="text-4xl font-bold mb-4">Welcome to Healthcare</h1>
+      <h2 id="typewriter-text" class="text-2xl font-bold mb-10 text-gray-400"></h2>
+      <p class="text-center text-lg mb-6 max-w-md">
+        Explore creative solutions and responsive designs. Let us help your vision come to life with stunning web experiences.
+      </p>
+      <div class="flex flex-row gap-4">
+        <a href="#about-us" class="border-2 border-orange-500 text-white px-6 py-2 rounded-full transition">
+          Read More
+        </a>
+        <a href="{{ url_for('auth_page') }}" class="bg-orange-500 hover:bg-orange-600 text-black px-6 py-2 rounded-full transition">
+          Join Us Now
+        </a>
+      </div>
+    </div>
+    
+    <script>
+      // Typewriter effect
+      const textElement = document.getElementById("typewriter-text");
+      const text = "Revolutionizing Healthcare for a Better Tomorrow";
+      let charIndex = 0;
+    
+      function typeWriter() {
+        if (charIndex < text.length) {
+          textElement.textContent += text.charAt(charIndex);
+          charIndex++;
+          setTimeout(typeWriter, 30); // Typing speed in ms
+        }
+      }
+    
+      // Start the effect when the page loads
+      window.addEventListener("DOMContentLoaded", typeWriter);
+    </script>    
+      </div>      
+  </header>
+
+  <section id="about-us" class="bg-gray-800 py-12">
+    <div class="container mx-auto text-center px-4">
+      <h2 class="text-3xl font-semibold text-white mb-6">About Us</h2>
+      <p class="text-gray-400 max-w-2xl mx-auto mb-6">
+        At <span class="text-orange-500 font-bold">Selecao Healthcare Solutions</span>, we are a team of passionate innovators dedicated to transforming healthcare with state-of-the-art AI, machine learning, and cloud technologies. By merging data, technology, and expertise, we empower patients and professionals alike to make informed health decisions.
+      </p>
+      <div class="max-w-4xl mx-auto text-left">
+        <h3 class="text-xl font-semibold text-white mt-8">Our Mission</h3>
+        <p class="text-gray-400 mb-4">
+          To revolutionize healthcare by integrating advanced technologies and delivering accessible, secure, and personalized medical solutions for everyone.
+        </p>
+        <h3 class="text-xl font-semibold text-white mt-8">Our Vision</h3>
+        <p class="text-gray-400 mb-4">
+          To lead the future of healthcare through innovation, ensuring every individual has access to accurate diagnostics, cutting-edge treatments, and holistic care, no matter where they are.
+        </p>
+        <h3 class="text-xl font-semibold text-white mt-8">What We Do</h3>
+        <ul class="text-gray-400 list-disc list-inside">
+          <li><b>Integrated Diagnostics</b>: Combining multimodal AI to analyze text, images, and real-time data for precise healthcare insights.</li>
+          <li><b>Advanced Medical Imaging</b>: Leveraging cutting-edge technologies like CNNs and Vision Transformers to enhance diagnostic accuracy.</li>
+          <li><b>Rural Outreach</b>: Providing cloud-connected diagnostic tools to bridge the healthcare gap in underserved areas.</li>
+          <li><b>Scalable Healthcare Solutions</b>: Ensuring compliance with privacy standards like HIPAA while offering scalable systems tailored for modern medical needs.</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-white mt-8">Why Choose Us</h3>
+        <ul class="text-gray-400 list-disc list-inside">
+          <li><b>Accuracy You Can Trust</b>: Ensemble models improve diagnostic precision by up to 15%.</li>
+          <li><b>Time-Saving</b>: AI reduces reporting times by 50%, ensuring timely care.</li>
+          <li><b>Cost-Efficient</b>: Cutting-edge automation lowers operational costs by 20–30%.</li>
+          <li><b>Ethical and Transparent</b>: Scam-proof diagnostics safeguard patients from unnecessary expenses.</li>
+          <li><b>Accessible Everywhere</b>: Portable diagnostic tools and cloud integration bring healthcare to your doorstep.</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-white mt-8">Why It Matters</h3>
+        <p class="text-gray-400 mb-4">
+          Our platform simplifies the complexity of fragmented healthcare systems, enabling faster diagnoses, personalized treatments, and improved collaboration among providers, ultimately enhancing patient engagement and outcomes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="statistics" class="bg-gray-900 py-12">
+    <div class="container mx-auto text-center px-4">
+      <h2 class="text-3xl font-semibold text-white mb-6">Our Impact</h2>
+      <p class="text-gray-400 max-w-2xl mx-auto mb-12">
+        We are proud to present the results of our efforts in transforming healthcare through data integration and technology.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div class="stat-card p-6 bg-gray-700 rounded-lg shadow-lg transform transition-all hover:scale-105 hover:bg-gray-600">
+          <h3 class="text-4xl font-bold text-orange-500 mb-2" data-target="98" data-sign="%">0%</h3>
+          <p class="text-gray-300">Customer Satisfaction</p>
+        </div>
+        <div class="stat-card p-6 bg-gray-700 rounded-lg shadow-lg transform transition-all hover:scale-105 hover:bg-gray-600">
+          <h3 class="text-4xl font-bold text-orange-500 mb-2" data-target="150" data-sign="+">0+</h3>
+          <p class="text-gray-300">Healthcare Providers Integrated</p>
+        </div>
+        <div class="stat-card p-6 bg-gray-700 rounded-lg shadow-lg transform transition-all hover:scale-105 hover:bg-gray-600">
+          <h3 class="text-4xl font-bold text-orange-500 mb-2" data-target="200000" data-sign="+">0+</h3>
+          <p class="text-gray-300">Patients Benefitted</p>
+        </div>
+      </div>
+      <div class="mt-12 flex justify-center gap-8">
+        <div class="stat-card p-6 bg-gray-700 rounded-lg shadow-lg transform transition-all hover:scale-105 hover:bg-gray-600">
+          <h3 class="text-4xl font-bold text-orange-500 mb-2" data-target="50" data-sign="%">0%</h3>
+          <p class="text-gray-300">Reduction in Operational Costs</p>
+        </div>
+        <div class="stat-card p-6 bg-gray-700 rounded-lg shadow-lg transform transition-all hover:scale-105 hover:bg-gray-600">
+          <h3 class="text-4xl font-bold text-orange-500 mb-2" data-target="5" data-sign="x">0x</h3>
+          <p class="text-gray-300">Faster Data Processing</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <script>
+    // Function to animate numbers
+    function animateNumbers() {
+      const stats = document.querySelectorAll("#statistics h3");
+      stats.forEach(stat => {
+        const target = +stat.getAttribute("data-target"); // Final value
+        const sign = stat.getAttribute("data-sign") || ""; // Get the sign
+        const speed = 100; // Adjust speed for animation
+        const increment = target / speed;
+        
+        let currentValue = 0;
+  
+        const updateNumber = () => {
+          if (currentValue < target) {
+            currentValue += increment;
+            stat.textContent = `${Math.floor(currentValue)}${sign}`;
+            requestAnimationFrame(updateNumber);
+          } else {
+            stat.textContent = `${target}${sign}`; // Ensure it ends exactly at the target value with the sign
+          }
+        };
+  
+        updateNumber();
+      });
+    }
+  
+    // Trigger the animation when section enters viewport
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting) {
+          animateNumbers();
+          observer.disconnect(); // Run only once
+        }
+      },
+      { threshold: 0.5 }
+    );
+  
+    observer.observe(document.querySelector("#statistics"));
+  </script>
+  
+  <section id="unique-features" class="bg-gray-800 py-16">
+    <div class="container mx-auto px-6 lg:px-20">
+      <h2 class="text-4xl font-extrabold text-white text-center mb-12">Key Features</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        
+        <!-- Feature Card 1 -->
+        <div class="feature-card p-6 bg-gray-900 rounded-lg shadow-lg hover:shadow-xl transform transition-all hover:scale-105">
+          <div class="icon bg-orange-500 text-white w-16 h-16 flex items-center justify-center rounded-full mb-6">
+            <i class="fas fa-user-md text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-semibold text-white mb-4">AI-Powered Diagnostic Self-Assessment</h3>
+          <p class="text-gray-400">
+            Empower patients to analyze symptoms and reports with AI-driven insights before consulting professionals.
+          </p>
+        </div>
+  
+        <!-- Feature Card 2 -->
+        <div class="feature-card p-6 bg-gray-900 rounded-lg shadow-lg hover:shadow-xl transform transition-all hover:scale-105">
+          <div class="icon bg-orange-500 text-white w-16 h-16 flex items-center justify-center rounded-full mb-6">
+            <i class="fas fa-shield-alt text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-semibold text-white mb-4">Scam-Proof Medical Insights</h3>
+          <p class="text-gray-400">
+            Protect patients from unnecessary procedures with unbiased, transparent diagnostics.
+          </p>
+        </div>
+  
+        <!-- Feature Card 3 -->
+        <div class="feature-card p-6 bg-gray-900 rounded-lg shadow-lg hover:shadow-xl transform transition-all hover:scale-105">
+          <div class="icon bg-orange-500 text-white w-16 h-16 flex items-center justify-center rounded-full mb-6">
+            <i class="fas fa-cogs text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-semibold text-white mb-4">Efficient Diagnostic Workflow</h3>
+          <p class="text-gray-400">
+            Automate workflows to generate reports, prioritize urgent cases, and improve operational efficiency.
+          </p>
+        </div>
+  
+        <!-- Feature Card 4 -->
+        <div class="feature-card p-6 bg-gray-900 rounded-lg shadow-lg hover:shadow-xl transform transition-all hover:scale-105">
+          <div class="icon bg-orange-500 text-white w-16 h-16 flex items-center justify-center rounded-full mb-6">
+            <i class="fas fa-cloud text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-semibold text-white mb-4">Accessible Diagnostics for Rural Areas</h3>
+          <p class="text-gray-400">
+            Deliver cloud-connected diagnostic tools and portable imaging solutions to underserved regions.
+          </p>
+        </div>
+  
+        <!-- Feature Card 5 -->
+        <div class="feature-card p-6 bg-gray-900 rounded-lg shadow-lg hover:shadow-xl transform transition-all hover:scale-105">
+          <div class="icon bg-orange-500 text-white w-16 h-16 flex items-center justify-center rounded-full mb-6">
+            <i class="fas fa-lock text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-semibold text-white mb-4">Privacy and Security First</h3>
+          <p class="text-gray-400">
+            Secure patient data with federated learning, end-to-end encryption, and compliance with global standards.
+          </p>
+        </div>
+  
+        <!-- Feature Card 6 -->
+        <div class="feature-card p-6 bg-gray-900 rounded-lg shadow-lg hover:shadow-xl transform transition-all hover:scale-105">
+          <div class="icon bg-orange-500 text-white w-16 h-16 flex items-center justify-center rounded-full mb-6">
+            <i class="fas fa-chart-line text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-semibold text-white mb-4">Scalable Solutions for Growth</h3>
+          <p class="text-gray-400">
+            Seamlessly integrate and scale healthcare operations using advanced cloud and containerization technologies.
+          </p>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  
+  <!-- Font Awesome for Icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>    
+  
+  <!-- Tailwind CSS Transition Styles -->
+  <style>
+    .stat-card:hover {
+      transform: scale(1.05);
+      background-color: #4a5568; /* Darker gray */
+    }
+  </style>
+
+<section id="contact" class="bg-gray-900 py-16">
+  <div class="container mx-auto px-6 lg:px-20">
+    <h2 class="text-4xl font-extrabold text-white text-center mb-12">Contact Us</h2>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Contact Information -->
+      <div>
+        <h3 class="text-2xl font-semibold text-white mb-6">Get in Touch</h3>
+        <p class="text-gray-400 mb-4">
+          Have any questions or need more information? Feel free to reach out to us. We’re here to help you!
+        </p>
+        <div class="text-gray-400 space-y-4">
+          <div class="flex items-center">
+            <i class="fas fa-map-marker-alt text-orange-500 mr-4"></i>
+            <span>123 Healthcare Street, TechCity, TX 12345</span>
+          </div>
+          <div class="flex items-center">
+            <i class="fas fa-phone-alt text-orange-500 mr-4"></i>
+            <span>+1 (123) 456-7890</span>
+          </div>
+          <div class="flex items-center">
+            <i class="fas fa-envelope text-orange-500 mr-4"></i>
+            <a href="mailto:contact@healthcare.com">contact@healthcare.com</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Contact Form -->
+      <div>
+        <h3 class="text-2xl font-semibold text-white mb-6">Send Us a Message</h3>
+        <form action="#" method="POST" class="space-y-6">
+          <div>
+            <label for="name" class="block text-gray-400 mb-2">Your Name</label>
+            <input type="text" id="name" name="name" required
+                   class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
+          </div>
+          <div>
+            <label for="email" class="block text-gray-400 mb-2">Your Email</label>
+            <input type="email" id="email" name="email" required
+                   class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
+          </div>
+          <div>
+            <label for="message" class="block text-gray-400 mb-2">Your Message</label>
+            <textarea id="message" name="message" rows="4" required
+                      class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
+          </div>
+          <button type="submit"
+                  class="w-full bg-orange-500 text-white font-semibold py-3 rounded-lg shadow-md hover:bg-orange-600 transition">
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="mt-12">
+      <h3 class="text-2xl font-semibold text-white mb-6 text-center">Find Us</h3>
+      <div class="rounded-lg shadow-lg overflow-hidden">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d242118.1700642124!2d73.69815066228594!3d18.524545036931684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1735393731686!5m2!1sen!2sin" 
+          width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Font Awesome for Icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+
+  <footer class="bg-gray-800 py-6 text-center text-gray-400">
+    <p>&copy; 2024 Healthcare. All rights reserved.</p>
+  </footer>  
+</body>
+</html>

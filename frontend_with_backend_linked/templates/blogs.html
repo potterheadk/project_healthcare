@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthcare Blogs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white h-full">
+    <nav class="bg-gray-800 text-white top-0 sticky">
+        <div class="container mx-auto flex items-center justify-between py-4 px-6">
+          <!-- Logo -->
+          <a href="{{ url_for('landing') }}" class="text-2xl font-bold">Healthcare</a>
+          <!-- Navigation Links -->
+          <ul class="flex items-center space-x-8">
+            <li><a href="{{ url_for('landing') }}" class="hover:text-orange-500 transition">Home</a></li>
+            <li><a href="#" class="hover:text-orange-500 transition">Counselling</a></li>
+            <li><a href="#" class="hover:text-orange-500 transition">Image Analysis</a></li>
+            <li><a href="{{ url_for('blogs') }}" class="bg-orange-500 text-white px-4 py-2 rounded-full font-semibold">Blogs</a></li>
+            <li><a href="#contact" class="hover:text-orange-500 transition">Contact</a></li>
+            {% if 'username' in session %}
+              <li><a href="{{ url_for('dashboard') }}" class="hover:text-orange-500 transition">Dashboard</a></li>
+            {% else %}
+              <li><a href="{{ url_for('auth_page') }}" class="hover:text-orange-500 transition">Login</a></li>
+            {% endif %}
+            <!-- Dropdown Menu -->
+            <li class="relative group">
+              <a href="#" class="hover:text-orange-500 transition flex items-center">
+                Dropdown <span class="ml-1">▼</span>
+              </a>
+              <ul class="absolute hidden group-hover:block bg-gray-700 text-sm mt-2 space-y-1 py-2 w-32 rounded-lg">
+                <li><a href="#" class="block px-4 py-2 hover:bg-gray-600">Option 1</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-gray-600">Option 2</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-gray-600">Option 3</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+    </nav> 
+
+  <header class="bg-gradient-to-b from-gray-800 to-gray-700 py-12 text-center">
+    <h1 class="text-4xl font-bold text-white mb-4">Healthcare Blogs</h1>
+    <p class="text-gray-400 text-lg">Explore the latest insights and innovations in healthcare.</p>
+  </header>
+
+  <section class="container mx-auto py-12 px-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Blog Card 1 -->
+      <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+        <img src="https://via.placeholder.com/300x200" alt="Blog Image" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-white mb-2">The Future of AI in Healthcare</h3>
+          <p class="text-gray-400 mb-4">Discover how artificial intelligence is transforming patient care and healthcare management.</p>
+          <a href="#" class="text-orange-500 hover:underline">Read More</a>
+        </div>
+      </div>
+
+      <!-- Blog Card 2 -->
+      <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+        <img src="https://via.placeholder.com/300x200" alt="Blog Image" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-white mb-2">Benefits of Data Integration</h3>
+          <p class="text-gray-400 mb-4">Learn how integrated healthcare data improves outcomes and efficiency for providers and patients.</p>
+          <a href="#" class="text-orange-500 hover:underline">Read More</a>
+        </div>
+      </div>
+
+      <!-- Blog Card 3 -->
+      <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+        <img src="https://via.placeholder.com/300x200" alt="Blog Image" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-white mb-2">The Role of Telemedicine</h3>
+          <p class="text-gray-400 mb-4">Explore the impact of telemedicine on making healthcare more accessible and efficient.</p>
+          <a href="#" class="text-orange-500 hover:underline">Read More</a>
+        </div>
+      </div>
+
+      <!-- Add more blog cards as needed -->
+    </div>
+  </section>
+
+  <footer class="bg-gray-800 py-6 text-center text-gray-400">
+    <p>&copy; 2024 Healthcare. All rights reserved.</p>
+  </footer>
+</body>
+</html>

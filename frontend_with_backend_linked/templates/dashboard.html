@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold">Welcome, {{ username }}</h1>
+            <a href="{{ url_for('logout') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                Logout
+            </a>
+        </div>
+
+        {% if records %}
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <table class="min-w-full">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Record Name</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    {% for record in records %}
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ record[1] }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ record[4].strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                        <td class="px-6 py-4">{{ record[2] }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            {% if record[3] %}
+                            <a href="{{ url_for('download_file', record_id=record[0]) }}" 
+                               class="text-blue-600 hover:text-blue-900">
+                                Download File
+                            </a>
+                            {% else %}
+                            No file
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <p class="text-gray-600">No records found.</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
